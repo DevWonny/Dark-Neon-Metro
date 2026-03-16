@@ -1,0 +1,11 @@
+# Root .gitignore
+node_modules/
+.env
+.DS_Store
+
+# Client-specific
+client/.next/
+client/out/
+
+# Server-specific
+server/npm-debug.log*

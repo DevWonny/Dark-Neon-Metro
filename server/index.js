@@ -26,22 +26,36 @@ const NORMAL_KEY = process.env.NORMAL_API_KEY;
 const PORT = process.env.PORT;
 const URL = "http://swopenAPI.seoul.go.kr/api/subway";
 
+// * 실시간 열차 위치 정보
 const getSubwayData = async (line) => {
   try {
     const url = encodeURI(
-      `${URL}/${SUBWAY_KEY}/json/realtimePosition/0/100/${line}`,
+      `${URL}/${SUBWAY_KEY}/json/realtimePosition/0/5/${line}`,
     );
 
     const response = await axios.get(url);
-    console.log("🚀 ~ getSubwayData ~ response:", response);
 
-    if (response.data) {
+    if (response.data.errorMessage.status === 200) {
       return response.data.realtimePositionList;
     }
-    return null;
+    return [];
   } catch (error) {
     console.log("API 호출 에러", error);
     return [];
+  }
+};
+
+// * 실시간 열차 도작 정보
+const getSubwayArrivalData = async (station) => {
+  try {
+    const url = encodeURI(
+      `${URL}/${SUBWAY_KEY}/json/realtimeStationArrival/0/5/${station}`,
+    );
+
+    const response = await axios.get(url);
+    return response.data;
+  } catch (error) {
+    return error;
   }
 };
 
@@ -56,6 +70,18 @@ app.get("/api/subway/:line", async (req, res) => {
     res.json(data);
   } else {
     res.status(500).json({ error: "데이터를 가져오지 못했습니다." });
+  }
+});
+
+app.get("/api/subwayArrival/:station", async (req, res) => {
+  const { station } = req.params;
+  const data = await getSubwayArrivalData(station);
+
+  console.log("🚀 ~ data:", data);
+  if (data) {
+    res.json(data);
+  } else {
+    return null;
   }
 });
 

@@ -3,10 +3,19 @@ $bg-color: #000;
 $text-color: #fff;
 
 // * Base Neon Color
-$cyan-color: #00ffff;
-$pink-color: #ff00ff;
-$lime-color: #ccff00;
-$violet-color: #9d00ff;
-$orange-color: #ff9900;
+// $cyan-color: #00ffff;
+// $pink-color: #ff00ff;
+// $lime-color: #ccff00;
+// $violet-color: #9d00ff;
+// $orange-color: #ff9900;
 
-// * Border Color
+$complete-color: #00ff66;
+$caution-color: #ff3131;
+$warning-color: #ffd700;
+
+@mixin text-neon($color) {
+  text-shadow:
+    0 0 5px $color,
+    0 0 10px $color,
+    0 0 20px $color;
+}

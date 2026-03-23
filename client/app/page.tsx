@@ -2,7 +2,7 @@
 "use client";
 import { useState } from "react";
 // component
-import Header from "@/components/header";
+import Timer from "@/components/timer";
 
 export default function Main() {
   const [line, setLine] = useState("2호선");
@@ -35,10 +35,8 @@ export default function Main() {
 
   return (
     <div className="flex flex-col">
-      <Header />
-      <button onClick={fetchData}>Click</button>
-
-      <button onClick={testData}>TEST2</button>
+      {/* 각 컴포넌트 위치는 나중에 노선 등이 나오면 잡기 */}
+      <Timer />
     </div>
   );
 }

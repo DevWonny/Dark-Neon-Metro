@@ -2,7 +2,7 @@
 "use client";
 import { useState } from "react";
 // component
-import Header from "@/app/components/header";
+import Header from "@/components/header";
 
 export default function Main() {
   const [line, setLine] = useState("2호선");

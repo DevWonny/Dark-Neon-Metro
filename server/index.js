@@ -64,7 +64,6 @@ app.get("/api/subway/:line", async (req, res) => {
   console.log(`${line} 수신 요청`);
 
   const data = await getSubwayData(line);
-  console.log("🚀 ~ data:", data);
 
   if (data) {
     res.json(data);
@@ -77,7 +76,6 @@ app.get("/api/subwayArrival/:station", async (req, res) => {
   const { station } = req.params;
   const data = await getSubwayArrivalData(station);
 
-  console.log("🚀 ~ data:", data);
   if (data) {
     res.json(data);
   } else {

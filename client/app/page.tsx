@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { useState } from "react";
+// component
+import Header from "@/app/components/header";
 
 export default function Main() {
   const [line, setLine] = useState("2호선");
@@ -33,6 +35,7 @@ export default function Main() {
 
   return (
     <div className="flex flex-col">
+      <Header />
       <button onClick={fetchData}>Click</button>
 
       <button onClick={testData}>TEST2</button>

@@ -1,13 +1,7 @@
 @use "@/styles/_variables" as v;
 
 aside.timer-container {
-  padding: 20px 50px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 8px;
-  border: 1px solid rgba(#ffff, 0.1);
-  background-color: rgba(#fff, 0.05);
-  box-shadow: 0 4px 6px rgba(#000, 0.3);
+  @include v.glass-panel();
 
   p.server-status {
     @include v.text-neon(v.$complete-color);

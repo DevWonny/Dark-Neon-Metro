@@ -1,0 +1,5 @@
+@use "@/styles/_variables" as v;
+aside.line-selector-container {
+  left: 50%;
+  @include v.glass-panel();
+}

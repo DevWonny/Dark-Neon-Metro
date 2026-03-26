@@ -8,22 +8,28 @@ import SelectorDropdown from "./dropdown";
 import "@/styles/components/lineSelector.scss";
 interface propsData {
   stationData: StationData[];
+  onSelectLine: (line: string) => void;
+  onSelectStation: (station: string) => void;
 }
 
-export default function LineSelector({ stationData }: propsData) {
-  // console.log("🚀 ~ LineSelector ~ stationData:", stationData);
-  const [isLineOpen, setIsLineOpen] = useState(false);
-  const [lineIndex, setLineIndex] = useState(-1);
-  const [isStationOpen, setIsStationOpen] = useState(false);
-  const [stationIndex, setStationIndex] = useState(-1);
-
+export default function LineSelector({
+  stationData,
+  onSelectLine,
+  onSelectStation,
+}: propsData) {
   return (
     <aside className="line-selector-container absolute">
       <div className="station-dropdown-container">
         {/* 호선 선택 */}
-        <SelectorDropdown items={SUBWAY_LINES}></SelectorDropdown>
+        <SelectorDropdown
+          items={SUBWAY_LINES}
+          onSelect={(item) => onSelectLine(item)}
+        ></SelectorDropdown>
         {/* 역 선택 */}
-        <SelectorDropdown items={stationData}></SelectorDropdown>
+        <SelectorDropdown
+          items={stationData}
+          onSelect={(item) => onSelectStation(item)}
+        ></SelectorDropdown>
       </div>
     </aside>
   );

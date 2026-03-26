@@ -4,7 +4,7 @@ import { SubwayLineType } from "@/constants/subway";
 import { StationData } from "@/types/station";
 interface SelectDropdownType {
   items: readonly SubwayLineType[] | StationData[];
-  onSelect: (item: string) => void;
+  onSelect: (item: string | SubwayLineType) => void;
 }
 
 export default function SelectorDropdown({

@@ -8,7 +8,7 @@ import SelectorDropdown from "./dropdown";
 import "@/styles/components/lineSelector.scss";
 interface propsData {
   stationData: StationData[];
-  onSelectLine: (line: string) => void;
+  onSelectLine: (line: SubwayLineType) => void;
   onSelectStation: (station: string) => void;
 }
 
@@ -23,7 +23,7 @@ export default function LineSelector({
         {/* 호선 선택 */}
         <SelectorDropdown
           items={SUBWAY_LINES}
-          onSelect={(item) => onSelectLine(item)}
+          onSelect={(item) => onSelectLine(item as SubwayLineType)}
         ></SelectorDropdown>
         {/* 역 선택 */}
         <SelectorDropdown

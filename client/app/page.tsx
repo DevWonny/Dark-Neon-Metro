@@ -55,11 +55,12 @@ export default function Main() {
     }
   };
 
-  // 테스트
-  const onSelectLine = (line: string) => {
-    console.log("🚀 ~ onSelectLine ~ line:", line);
+  // 호선 변경
+  const onSelectLine = (line: SubwayLineType) => {
+    setLine(line);
   };
 
+  // 역 변경
   const onSelectStation = (station: string) => {
     console.log("🚀 ~ onSelectStation ~ station:", station);
   };

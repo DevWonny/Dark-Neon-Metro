@@ -87,7 +87,6 @@ app.get("/api/subwayArrival/:station", async (req, res) => {
 
 // * 노선별 지하철 역 정보
 const getSubwayStationData = async (line) => {
-  console.log("🚀 ~ getSubwayStationData ~ line:", line);
   try {
     const url = encodeURI(
       `http://openapi.seoul.go.kr:8088/${SUBWAY_KEY}/json/SearchSTNBySubwayLineInfo/1/200/ / /${line}`,

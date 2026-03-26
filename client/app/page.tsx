@@ -66,7 +66,7 @@ export default function Main() {
     <div className="relative w-screen h-screen">
       {/* 각 컴포넌트 위치는 나중에 노선 등이 나오면 잡기 */}
       <Timer />
-      <LineSelector />
+      <LineSelector stationData={stationList} />
     </div>
   );
 }

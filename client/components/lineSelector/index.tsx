@@ -1,21 +1,15 @@
 import { useState } from "react";
+// type
+import { StationData } from "@/types/station";
+// component
+import SelectorDropdown from "./dropdown";
 // style
 import "@/styles/components/lineSelector.scss";
-
-interface Option {
-  id: string;
-  label: string;
+interface propsData {
+  stationData: StationData[];
 }
 
-const testOptions: Option[] = [
-  { id: "1", label: "test1" },
-  { id: "2", label: "test2" },
-  { id: "3", label: "test3" },
-  { id: "4", label: "test4" },
-  { id: "5", label: "test5" },
-];
-
-export default function LineSelector() {
+export default function LineSelector({ stationData }: propsData) {
   const [isLineOpen, setIsLineOpen] = useState(false);
   const [lineIndex, setLineIndex] = useState(-1);
   const [isStationOpen, setIsStationOpen] = useState(false);
@@ -23,41 +17,10 @@ export default function LineSelector() {
 
   return (
     <aside className="line-selector-container absolute">
-      <div className="line-dropdown-container relative">
-        <button
-          type="button"
-          aria-haspopup="listbox"
-          aria-expanded={isLineOpen}
-          aria-controls="line-dropdown-menu"
-          onClick={() => setIsLineOpen(!isLineOpen)}
-        >
-          {lineIndex >= 0 ? testOptions[lineIndex].label : "선택"}
-        </button>
-
-        {isLineOpen && (
-          <ul
-            className="absolute"
-            id="line-dropdown-menu"
-            role="listbox"
-            aria-label="Test"
-          >
-            {testOptions.map((option, index) => (
-              <li
-                key={option.id}
-                role="option"
-                aria-selected={lineIndex === index}
-                onClick={() => {
-                  setLineIndex(index);
-                  setIsLineOpen(false);
-                }}
-              >
-                {option.label}
-              </li>
-            ))}
-          </ul>
-        )}
+      <div className="station-dropdown-container">
+        <SelectorDropdown type="test"></SelectorDropdown>
+        <SelectorDropdown type="test"></SelectorDropdown>
       </div>
-      <div className="station-dropdown-container"></div>
     </aside>
   );
 }

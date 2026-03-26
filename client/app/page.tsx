@@ -7,11 +7,12 @@ import LineSelector from "@/components/lineSelector";
 
 // type
 import { OriginStationData, StationData } from "@/types/station";
+import { SUBWAY_LINES, SubwayLineType } from "@/constants/subway";
 // utils
 import transformStationData from "@/utils/transformStationData";
 
 export default function Main() {
-  const [line, setLine] = useState("1호선");
+  const [line, setLine] = useState<SubwayLineType>(SUBWAY_LINES[0]);
   const [station, setStation] = useState("신림");
   const [data, setData] = useState<any>(null);
   const [stationList, setStationList] = useState<StationData[]>([]); // 호선별 역 리스트

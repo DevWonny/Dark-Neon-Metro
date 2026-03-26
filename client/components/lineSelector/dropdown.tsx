@@ -1,8 +1,7 @@
 import { useState } from "react";
-
-interface dropdownProps {
-  type: string;
-}
+// type
+import { SubwayLineType } from "@/constants/subway";
+import { StationData } from "@/types/station";
 interface Option {
   id: string;
   label: string;
@@ -16,9 +15,26 @@ const testOptions: Option[] = [
   { id: "5", label: "test5" },
 ];
 
-export default function SelectorDropdown({ type }: dropdownProps) {
+interface SelectDropdownType {
+  items: readonly SubwayLineType[] | StationData[];
+}
+
+export default function SelectorDropdown({ items }: SelectDropdownType) {
+  console.log("🚀 ~ SelectorDropdown ~ items:", items);
+  console.log(items[0]);
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownIndex, setDropdownIndex] = useState(-1);
+  const [dropdownIndex, setDropdownIndex] = useState(0);
+
+  const getLabel = (item: unknown): string => {
+    if (!item) return "";
+
+    // type 체크 진행
+    if (typeof item === "object" && "name" in item) {
+      return item.name as string;
+    }
+
+    return String(item);
+  };
 
   return (
     <div className="line-selector-container relative">
@@ -30,28 +46,25 @@ export default function SelectorDropdown({ type }: dropdownProps) {
         aria-controls="dropdown-menu"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {dropdownIndex >= 0 ? testOptions[dropdownIndex].label : "Test"}
+        {getLabel(items[dropdownIndex])}
       </button>
 
       {isOpen && (
         <ul
-          className="absolute"
+          className="absolute "
           id="dropdown-menu"
           role="listbox"
-          aria-label="Test"
+          aria-label="selector-label"
         >
-          {testOptions.map((option, index) => (
+          {items.map((item, index) => (
             <li
-              key={option.id}
-              className="cursor-pointer"
-              role="option"
-              aria-selected={dropdownIndex === index}
+              key={`line-selector-dropdown-${getLabel(items[dropdownIndex])}-${index}`}
               onClick={() => {
                 setDropdownIndex(index);
                 setIsOpen(false);
               }}
             >
-              {option.label}
+              {getLabel(item)}
             </li>
           ))}
         </ul>

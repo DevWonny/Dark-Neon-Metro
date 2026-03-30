@@ -25,12 +25,33 @@ export const getLineColor = (lineId: string) => {
 
 
 // 호선 종류 
+// export const SUBWAY_LINES = [
+//   '1호선', '2호선', '3호선', '4호선', '5호선',
+//   '6호선', '7호선', '8호선', '9호선', '경의선',
+//   '공항철도', '경춘', '수인분당', '신분당',
+//   '우이신설', 'GTX-A', '인천선', '인천2호선'
+// ] as const
+
 export const SUBWAY_LINES = [
-  '1호선', '2호선', '3호선', '4호선', '5호선',
-  '6호선', '7호선', '8호선', '9호선', '경의선',
-  '공항철도', '경춘', '수인분당', '신분당',
-  '우이신설', 'GTX-A', '인천선', '인천2호선'
-] as const
+  { code: 1001, label: '1호선' },
+  { code: 1002, label: '2호선' },
+  { code: 1003, label: '3호선' },
+  { code: 1004, label: '4호선' },
+  { code: 1005, label: '5호선' },
+  { code: 1006, label: '6호선' },
+  { code: 1007, label: '7호선' },
+  { code: 1008, label: '8호선' },
+  { code: 1009, label: '9호선' },
+  { code: 1063, label: '경의선' },
+  { code: 1065, label: '공항철도' },
+  { code: 1067, label: '경춘' },
+  { code: 1075, label: '수인분당' },
+  { code: 1077, label: '신분당' },
+  { code: 1092, label: '우이신설' },
+  { code: 1032, label: 'GTX-A' },
+  { code: 1021, label: '인천선' },
+  { code: 1028, label: '인천2호선' },
+]
 
 // 호선 종류 타입 추출
 export type SubwayLineType = typeof SUBWAY_LINES[number];

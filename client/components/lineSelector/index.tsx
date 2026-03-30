@@ -19,7 +19,7 @@ export default function LineSelector({
 }: propsData) {
   return (
     <aside className="line-selector-container absolute">
-      <div className="station-dropdown-container">
+      <div className="station-dropdown-container flex ">
         {/* 호선 선택 */}
         <SelectorDropdown
           items={SUBWAY_LINES}
@@ -28,7 +28,7 @@ export default function LineSelector({
         {/* 역 선택 */}
         <SelectorDropdown
           items={stationData}
-          onSelect={(item) => onSelectStation(item)}
+          onSelect={(item) => onSelectStation(item as string)}
         ></SelectorDropdown>
       </div>
     </aside>

@@ -42,6 +42,7 @@ export default function Main() {
   };
 
   const subwayStationData = async (line: string) => {
+    console.log("🚀 ~ subwayStationData ~ line:", line);
     try {
       const response = await fetch(
         `http://localhost:4000/api/subwayStation/${line}`,
@@ -67,7 +68,8 @@ export default function Main() {
 
   useEffect(() => {
     const initData = async () => {
-      await subwayStationData(line);
+      console.log("test", line);
+      await subwayStationData(line.label);
     };
 
     initData();

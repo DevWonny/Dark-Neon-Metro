@@ -4,6 +4,7 @@ import { SubwayLineType, getLineColor } from "@/constants/subway";
 import { StationData } from "@/types/station";
 // style
 import "@/styles/components/dropdown.scss";
+import { ChevronDown } from "lucide-react";
 interface SelectDropdownType {
   items: readonly SubwayLineType[] | StationData[];
   onSelect: (item: string | SubwayLineType) => void;
@@ -15,6 +16,21 @@ export default function SelectorDropdown({
 }: SelectDropdownType) {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownIndex, setDropdownIndex] = useState(0);
+
+  const className = (item: unknown) => {
+    if (!item) return "";
+
+    // Type 체크
+    if (typeof item === "object" && "name" in item) {
+      return "station";
+    }
+
+    if (typeof item === "object" && "label" in item) {
+      return "line";
+    }
+
+    return "";
+  };
 
   const getLabel = (item: unknown): string => {
     if (!item) return "";
@@ -49,14 +65,15 @@ export default function SelectorDropdown({
   return (
     <div className="line-selector-container relative">
       <button
-        className="cursor-pointer"
+        className="cursor-pointer w-full h-full flex items-center justify-between"
         type="button"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-controls="dropdown-menu"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {getLabel(items[dropdownIndex])}
+        <p>{getLabel(items[dropdownIndex])}</p>
+        <ChevronDown className={`icon-down ${isOpen && "rotate"}`} />
       </button>
 
       {isOpen && (

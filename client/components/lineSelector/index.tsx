@@ -19,7 +19,7 @@ export default function LineSelector({
 }: propsData) {
   return (
     <aside className="line-selector-container absolute">
-      <div className="station-dropdown-container flex ">
+      <div className="station-dropdown-container flex gap-[20px]">
         {/* 호선 선택 */}
         <SelectorDropdown
           items={SUBWAY_LINES}
